@@ -93,7 +93,7 @@ export default function MusicPlayer({ defaultSrc = '/music/Kya Mujhe Pyaar Hai-(
                 onClick={togglePlay}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative w-16 h-16 rounded-full bg-gradient-to-br from-hot-pink-500 to-hot-pink-700 flex items-center justify-center glow-pink transition-all duration-300 hover:from-hot-pink-400 hover:to-hot-pink-600"
+                className="relative w-16 h-16 rounded-full bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center shadow-lg transition-all duration-300 hover:from-rose-500 hover:to-pink-600"
               >
                 <AnimatePresence mode="wait">
                   {isPlaying ? (
@@ -129,7 +129,7 @@ export default function MusicPlayer({ defaultSrc = '/music/Kya Mujhe Pyaar Hai-(
                   initial={{ scale: 0 }}
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
-                  className="absolute inset-0 rounded-full border-2 border-hot-pink-400 opacity-50"
+                  className="absolute inset-0 rounded-full border-2 border-rose-300 opacity-50"
                 />
               )}
             </div>

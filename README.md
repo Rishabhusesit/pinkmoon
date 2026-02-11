@@ -36,7 +36,7 @@ npm install
 
 3. Add your custom content:
    - **Music Files:**
-     - `public/music/background.mp3` - Main background music
+     - `Kya Mujhe Pyaar Hai-(Mr-Jat.in).mp3` - Main background music
      - `public/music/cute-theme.mp3` - Cute theme music for gift page
      - `public/music/japanese-theme.mp3` - Japanese theme music for hangout page
    - **Images:**
@@ -44,7 +44,7 @@ npm install
      - `public/images/image2.jpg` - First gallery image
      - `public/images/image3.jpg` - Second gallery image
      - `public/images/image4.jpg` - Final section image
-     - `public/images/japanese-pond.gif` - Vintage Japanese pond GIF for hangout page
+     - `Koi Pond In A Leaf.gif` - Vintage Japanese pond GIF for hangout page
 
 4. Customize the text content:
    - Edit `app/page.tsx` to update all text sections with your custom messages
