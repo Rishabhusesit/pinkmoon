@@ -10,7 +10,9 @@ app.use(express.json());
 // NOTE: client gate is just UX; this makes it "real-ish" since backend validates.
 app.post("/api/unlock", (req, res) => {
   const { password } = req.body;
-  const ok = password === (process.env.APP_PASSWORD || "Moon");
+  // Case-insensitive check: accept moon, Moon, MOON
+  const correctPassword = (process.env.APP_PASSWORD || "Moon").toLowerCase();
+  const ok = password && password.toLowerCase() === correctPassword;
   res.json({ ok });
 });
 

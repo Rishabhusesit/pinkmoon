@@ -3,62 +3,83 @@ import { useState } from "react";
 export default function PasswordGate({ onUnlocked }: { onUnlocked: () => void }) {
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const unlock = async () => {
     setErr("");
+    const password = pwd.trim();
+    
+    // ✅ Client-side fallback: check password locally if backend fails
+    // Case-insensitive check for moon/Moon/MOON
+    const checkPassword = (pwd: string) => {
+      return pwd.toLowerCase() === "moon";
+    };
+
+    // ✅ Always check client-side first (case-insensitive)
+    if (checkPassword(password)) {
+      onUnlocked();
+      return;
+    }
+
+    // ✅ Also try backend if available (but client-side is primary)
     try {
       const r = await fetch("http://localhost:3001/api/unlock", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: pwd })
+        body: JSON.stringify({ password }),
       });
       const data = await r.json();
-      if (data.ok) onUnlocked();
-      else setErr("Wrong password. Hint: Moon 🌙");
+      if (data.ok) {
+        onUnlocked();
+        return;
+      }
     } catch {
-      setErr("Server not reachable. Start backend on :3001");
+      // Backend not running - that's fine, we already checked client-side
     }
+    
+    // Wrong password
+    setErr("Wrong password.");
   };
 
   return (
-    <div className="overlay">
-      <div className="winModal" role="dialog" aria-modal="true">
-        <div className="winTitleBar">
-          <div className="winIcon" />
-          <div className="winTitle">Enter your password</div>
-          <div className="winButtons">
-            <div className="winBtn" title="Minimize" />
-            <div className="winBtn" title="Maximize" />
-            <div className="winBtn close" title="Close" />
-          </div>
+    <div className="overlay95">
+      <div className="win95" role="dialog" aria-modal="true">
+        <div className="win95bar">
+          <div className="barTitle">System message</div>
+          <button className="barClose" onClick={() => setErr("Nice try 🙂")} aria-label="close">
+            ✕
+          </button>
         </div>
 
-        <div className="winBody">
-          <div className="winRow">
-            <div className="winBadge">🔒</div>
-            <div>
-              <div className="winHeadline">This application is private.</div>
-              <div className="winSub">Only the prettiest girl can enter.</div>
-            </div>
+        <div className="win95body">
+          <div className="win95h">Enter your password</div>
+
+          <label className="win95label">Enter Your Name</label>
+          <div className="win95inputWrapper">
+            <input
+              className="win95input"
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+              placeholder="Enter Your Name"
+              type={showPassword ? "text" : "password"}
+              autoFocus
+              onKeyDown={(e) => e.key === "Enter" && unlock()}
+            />
+            <button
+              type="button"
+              className="win95eyeBtn"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "👁" : "👁‍🗨"}
+            </button>
           </div>
 
-          <label className="label">Password</label>
-          <input
-            className="input"
-            type="password"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
-            placeholder="Moon"
-            onKeyDown={(e) => e.key === "Enter" && unlock()}
-            autoFocus
-          />
+          {err && <div className="win95err">{err} (hint: Enter "Moon")</div>}
 
-          {err && <div className="error">{err}</div>}
-
-          <div className="actions">
-            <button className="btn ghost" onClick={() => setPwd("")}>Clear</button>
-            <button className="btn" onClick={unlock}>OK</button>
-          </div>
+          <button className="win95btn" onClick={unlock}>
+            SIGN IN
+          </button>
         </div>
       </div>
     </div>

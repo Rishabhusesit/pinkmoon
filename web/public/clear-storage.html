@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clear Storage Helper</title>
+  <style>
+    body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      background: #fff6fb;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 24px 60px rgba(35,23,36,.18);
+      text-align: center;
+      max-width: 500px;
+    }
+    h1 {
+      color: #ff3fa6;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #ff3fa6;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    .status {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .success {
+      background: #d4edda;
+      color: #155724;
+    }
+    .info {
+      background: #e7f3ff;
+      color: #004085;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔓 Clear Storage Helper</h1>
+    <p>Click the button below to clear the "unlocked" flag and test the password gate again.</p>
+    
+    <button onclick="clearStorage()">Clear localStorage</button>
+    <button onclick="goHome()">Go to Home</button>
+    
+    <div id="status" class="status info" style="display: none;"></div>
+  </div>
+
+  <script>
+    function clearStorage() {
+      localStorage.removeItem('unlocked');
+      const status = document.getElementById('status');
+      status.style.display = 'block';
+      status.className = 'status success';
+      status.textContent = '✅ localStorage cleared! Now refresh the home page to see the password gate.';
+    }
+
+    function goHome() {
+      window.location.href = '/';
+    }
+
+    // Check current status on load
+    window.onload = function() {
+      const isUnlocked = localStorage.getItem('unlocked') === '1';
+      const status = document.getElementById('status');
+      status.style.display = 'block';
+      status.className = 'status info';
+      status.textContent = isUnlocked 
+        ? '🔓 Currently UNLOCKED (password gate won\'t show)'
+        : '🔒 Currently LOCKED (password gate will show)';
+    };
+  </script>
+</body>
+</html>
