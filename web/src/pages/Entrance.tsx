@@ -6,7 +6,7 @@ const links = [
   { label: "Vintage TV Room", href: "/tv-room" },
   { label: "Click For Gift", href: "/click-for-gift" },
   { label: "Find Prettiest Face", href: "/click-to-find-the-prettiest-face" },
-  { label: "Secrets", href: "/secrets" },
+  { label: "Find A Pretty Face", href: "/find-a-pretty-face" },
   { label: "Hangout", href: "/wanna-hangout-2gether" },
 ];
 

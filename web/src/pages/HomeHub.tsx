@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const routes = [
   { label: "TV ROOM", to: "/tv-room" },
-  { label: "SECRETS", to: "/secrets" },
+  { label: "FIND A PRETTY FACE", to: "/find-a-pretty-face" },
   { label: "SURPRISE", to: "/surprise" },
   { label: "HANGOUT 2GETHER", to: "/hangout" },
 ];

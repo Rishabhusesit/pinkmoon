@@ -12,7 +12,7 @@ export default function Navigation() {
     { href: '/click-to-find-the-prettiest-face', label: 'Click To Find The Prettiest Face' },
     { href: '/click-for-gift', label: 'Click For Gift' },
     { href: '/vintage-tv', label: 'Vintage TV' },
-    { href: '/secrets', label: 'Secrets' },
+    { href: '/find-a-pretty-face', label: 'Find A Pretty Face' },
     { href: '/wanna-hangout-2gether', label: 'Wanna Hangout 2gether?' },
   ]
 

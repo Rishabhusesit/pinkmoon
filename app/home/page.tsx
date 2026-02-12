@@ -76,13 +76,13 @@ export default function HomePage() {
                 Vintage TV Room
               </motion.button>
             </Link>
-            <Link href="/secrets">
+            <Link href="/find-a-pretty-face">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all"
               >
-                Secrets
+                Find A Pretty Face
               </motion.button>
             </Link>
             <Link href="/wanna-hangout-2gether">

@@ -2,7 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import HomeHub from "./pages/HomeHub";
 import TVRoom from "./pages/TVRoom";
-import Secrets from "./pages/Secrets";
+import FindAPrettyFace from "./pages/FindAPrettyFace";
 import Surprise from "./pages/Surprise";
 import Hangout from "./pages/Hangout";
 import VinylPlayer from "./components/VinylPlayer";
@@ -12,26 +12,27 @@ function AppContent() {
   const [flowerTrigger, setFlowerTrigger] = useState(0);
   const location = useLocation();
   const isHangoutPage = location.pathname === "/hangout";
+  const isPaintPage = location.pathname === "/find-a-pretty-face";
 
-  // Trigger flowers every 10 seconds (but not on Hangout page)
+  // Trigger flowers every 10 seconds (but not on Hangout or Paint page)
   useEffect(() => {
-    if (isHangoutPage) return; // Don't trigger on Hangout page
+    if (isHangoutPage || isPaintPage) return; // Don't trigger on Hangout or Paint page
     
     const interval = setInterval(() => {
       setFlowerTrigger((prev) => prev + 1);
     }, 10000); // 10 seconds
 
     return () => clearInterval(interval);
-  }, [isHangoutPage]);
+  }, [isHangoutPage, isPaintPage]);
 
-  // Expose trigger function globally for cat click (but not on Hangout)
+  // Expose trigger function globally for cat click (but not on Hangout or Paint page)
   useEffect(() => {
     (window as any).triggerFlowers = () => {
-      if (!isHangoutPage) {
+      if (!isHangoutPage && !isPaintPage) {
         setFlowerTrigger((prev) => prev + 1);
       }
     };
-  }, [isHangoutPage]);
+  }, [isHangoutPage, isPaintPage]);
 
   return (
     <>
@@ -39,15 +40,15 @@ function AppContent() {
         <Route path="/" element={<HomeHub />} />
         <Route path="/home" element={<HomeHub />} />
         <Route path="/tv-room" element={<TVRoom />} />
-        <Route path="/secrets" element={<Secrets />} />
+        <Route path="/find-a-pretty-face" element={<FindAPrettyFace />} />
         <Route path="/surprise" element={<Surprise />} />
         <Route path="/hangout" element={<Hangout />} />
 
         {/* no crashes on wrong routes */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <VinylPlayer />
-      {!isHangoutPage && <FlowerShower trigger={flowerTrigger} />}
+      {!isPaintPage && <VinylPlayer />}
+      {!isHangoutPage && !isPaintPage && <FlowerShower trigger={flowerTrigger} />}
     </>
   );
 }
