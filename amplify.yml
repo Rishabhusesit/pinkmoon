@@ -3,12 +3,28 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd web && npm ci
+        - |
+          if [ -d "web" ]; then
+            cd web
+            npm ci
+          else
+            echo "ERROR: web directory not found"
+            ls -la
+            exit 1
+          fi
     build:
       commands:
-        - cd web && npm run build
-        - echo "Build completed successfully"
-        - ls -la web/dist
+        - |
+          if [ -d "web" ]; then
+            cd web
+            npm run build
+            echo "Build completed successfully"
+            ls -la dist
+          else
+            echo "ERROR: web directory not found"
+            ls -la
+            exit 1
+          fi
   artifacts:
     baseDirectory: web/dist
     files:
