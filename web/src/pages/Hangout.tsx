@@ -76,16 +76,16 @@ export default function Hangout() {
       dragRef.current.startX = e.clientX;
       dragRef.current.startY = e.clientY;
       ring.classList.add("svCursorDown");
-      if (containerRef.current) {
-        containerRef.current.classList.add("dragging");
+      if (container) {
+        container.classList.add("dragging");
       }
     };
     
     const onUp = () => {
       dragRef.current.down = false;
       ring.classList.remove("svCursorDown");
-      if (containerRef.current) {
-        containerRef.current.classList.remove("dragging");
+      if (container) {
+        container.classList.remove("dragging");
       }
     };
 

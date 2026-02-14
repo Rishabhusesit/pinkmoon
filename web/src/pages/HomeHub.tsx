@@ -137,7 +137,7 @@ export default function HomeHub() {
           <a 
             href="mailto:rishabhlikesmoon@gmail.com" 
             className="socialLink"
-            onClick={(e) => {
+            onClick={() => {
               window.location.href = 'mailto:rishabhlikesmoon@gmail.com';
             }}
           >

@@ -173,7 +173,6 @@ export function AudioProvider({
   useEffect(() => {
     if (audioRef.current) {
       const wasPlaying = !audioRef.current.paused;
-      const oldTime = audioRef.current.currentTime;
       audioRef.current.src = src;
       audioRef.current.load();
       audioRef.current.addEventListener("loadedmetadata", () => {
