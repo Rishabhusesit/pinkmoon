@@ -3,10 +3,25 @@ frontend:
   phases:
     preBuild:
       commands:
+        - echo "Current directory: $(pwd)"
+        - echo "Listing root directory:"
+        - ls -la
+        - echo "Installing dependencies..."
         - npm ci --prefix web
+        - echo "Dependencies installed successfully"
     build:
       commands:
+        - echo "Building application..."
         - npm run build --prefix web
+        - echo "Build completed. Checking output directory:"
+        - pwd
+        - ls -la web/ || echo "web directory not found"
+        - ls -la web/dist/ || echo "dist directory not found"
+        - echo "Verifying index.html exists:"
+        - test -f web/dist/index.html && echo "✓ index.html found" || echo "✗ index.html NOT found"
+        - echo "Listing all files in dist:"
+        - find web/dist -type f
+        - echo "Build verification complete"
   artifacts:
     baseDirectory: web/dist
     files:
