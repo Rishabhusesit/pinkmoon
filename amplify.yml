@@ -9,6 +9,8 @@ frontend:
       commands:
         - cd web
         - npm run build
+        - echo "Build completed successfully"
+        - ls -la dist
   artifacts:
     baseDirectory: web/dist
     files:
