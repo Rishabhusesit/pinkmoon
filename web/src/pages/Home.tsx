@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="page">
-      <div className="topNav">
-        <div className="navBrand">OnlyForThePrettiestGirl</div>
+      {/* Top nav with premium brand */}
+      <div className="hangoutTop">
+        <Link className="hangoutBrandPremium" to="/home">
+          WannaLiveWithFish?
+        </Link>
+        <Link className="hangoutHome" to="/home">
+          Home
+        </Link>
+      </div>
+      
+      <div className="topNav" style={{ marginTop: 18 }}>
         <div className="navLinks">
           <Link className="navLink" to="/tv-room">Vintage TV Room</Link>
           <Link className="navLink" to="/click-for-gift">Click For Gift</Link>

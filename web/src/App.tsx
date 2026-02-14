@@ -13,26 +13,27 @@ function AppContent() {
   const location = useLocation();
   const isHangoutPage = location.pathname === "/hangout";
   const isPaintPage = location.pathname === "/find-a-pretty-face";
+  const isTVPage = location.pathname === "/tv-room";
 
-  // Trigger flowers every 10 seconds (but not on Hangout or Paint page)
+  // Trigger flowers every 10 seconds (but not on Hangout, Paint, or TV page)
   useEffect(() => {
-    if (isHangoutPage || isPaintPage) return; // Don't trigger on Hangout or Paint page
+    if (isHangoutPage || isPaintPage || isTVPage) return;
     
     const interval = setInterval(() => {
       setFlowerTrigger((prev) => prev + 1);
     }, 10000); // 10 seconds
 
     return () => clearInterval(interval);
-  }, [isHangoutPage, isPaintPage]);
+  }, [isHangoutPage, isPaintPage, isTVPage]);
 
-  // Expose trigger function globally for cat click (but not on Hangout or Paint page)
+  // Expose trigger function globally for cat click (but not on Hangout, Paint, or TV page)
   useEffect(() => {
     (window as any).triggerFlowers = () => {
-      if (!isHangoutPage && !isPaintPage) {
+      if (!isHangoutPage && !isPaintPage && !isTVPage) {
         setFlowerTrigger((prev) => prev + 1);
       }
     };
-  }, [isHangoutPage, isPaintPage]);
+  }, [isHangoutPage, isPaintPage, isTVPage]);
 
   return (
     <>
@@ -47,8 +48,8 @@ function AppContent() {
         {/* no crashes on wrong routes */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      {!isPaintPage && <VinylPlayer />}
-      {!isHangoutPage && !isPaintPage && <FlowerShower trigger={flowerTrigger} />}
+      {!isTVPage && <VinylPlayer />}
+      {!isHangoutPage && !isPaintPage && !isTVPage && <FlowerShower trigger={flowerTrigger} />}
     </>
   );
 }

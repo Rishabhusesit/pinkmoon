@@ -9,25 +9,54 @@ export default function Surprise() {
     setTrack("/music/cute.mp3");
   }, [setTrack]);
   return (
-    <div className="page">
-      <div className="topNav">
-        <Link className="navBrand" to="/home">ForThePrettiestGirl</Link>
-        <Link className="navLink" to="/home">Home</Link>
+    <div className="surprisePage">
+      {/* Background GIF */}
+      <div className="surpriseBgGif"></div>
+      
+      {/* Top nav with premium brand */}
+      <div className="hangoutTop">
+        <Link className="hangoutBrandPremium" to="/home">
+          WannaLiveWithFish?
+        </Link>
+        <Link className="hangoutHome" to="/home">
+          Home
+        </Link>
       </div>
 
-      <div style={{ marginTop: 24 }}>
-        <div className="kicker">SURPRISE</div>
-        <h1 className="h1">Dancing time 💗</h1>
-        <p className="p">Put your GIFs in /public/gifs and they'll blend into the theme.</p>
-
-        <div className="card" style={{ marginTop: 14, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-          <div>
-            <div className="kicker">GIF 1</div>
-            <img src="/gifs/kitty.gif" alt="Hello Kitty" style={{ width: "100%", borderRadius: 16 }} />
+      <div className="surpriseContent">
+        {/* Top Corner Characters - Tilted */}
+        <div className="surpriseCharLeft">
+          <img src="/images/char-left.jpeg" alt="Left Character" className="surpriseCharImg" />
+        </div>
+        
+        <div className="surpriseCharRight">
+          <img src="/images/char-right.jpg" alt="Right Character" className="surpriseCharImg" />
+        </div>
+        
+        {/* Bottom Corner Characters - Tilted */}
+        <div className="surpriseCharBottomLeft">
+          <img src="/images/char-bottom-left.png" alt="Bottom Left Character" className="surpriseCharImg" />
+        </div>
+        
+        <div className="surpriseCharBottomRight">
+          <img src="/images/char-bottom-right.png" alt="Bottom Right Character" className="surpriseCharImg" />
+        </div>
+        
+        {/* Center Title */}
+        <div className="surpriseHeaderText">
+          <div className="surpriseTitle">ForYouPage</div>
+        </div>
+        
+        {/* GIFs Section */}
+        <div className="surpriseGifsContainer">
+          <div className="surpriseGifItem">
+            <img src="/gifs/hello-kitty.gif?v=2" alt="Hello Kitty" className="surpriseGif" />
           </div>
-          <div>
-            <div className="kicker">GIF 2</div>
-            <img src="/gifs/stitch.gif" alt="Stitch" style={{ width: "100%", borderRadius: 16 }} />
+          <div className="surpriseGifItem">
+            <img src="/gifs/hello-kitty-middle.gif" alt="Hello Kitty" className="surpriseGif" />
+          </div>
+          <div className="surpriseGifItem">
+            <img src="/gifs/stitch-dancing.gif" alt="Stitch Dancing" className="surpriseGif" />
           </div>
         </div>
       </div>

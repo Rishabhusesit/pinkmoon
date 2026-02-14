@@ -18,6 +18,7 @@ export default function HomeHub() {
     return false;
   });
   const [isChecking, setIsChecking] = useState(true);
+  const [showConnect4Life, setShowConnect4Life] = useState(false);
 
   useEffect(() => {
     // Double-check after mount (in case localStorage changed)
@@ -58,6 +59,7 @@ export default function HomeHub() {
             </Link>
           ))}
         </div>
+        <img src="/gifs/pisces-monochromian.gif" alt="Pisces" className="coverTopGif" />
       </div>
 
       {/* BIG headline */}
@@ -103,23 +105,27 @@ export default function HomeHub() {
 
       {/* Scrollable content sections */}
       <div className="coverSection">
-        <div className="sectionTitle">EXPLORE</div>
+        <div className="sectionTitle">5iveStarKavi</div>
         <div className="sectionContent">
-          <p>Discover hidden moments, secret spaces, and special surprises crafted just for you.</p>
+          <p>Kaash hum sapno se jagne ke baad bhi unhi sapno mein asal zindagi ko paate<br />
+          Jagne ke baad bhi sab sapno jaisa hota<br />
+          Duniyaa bilkul sapne kaisi shaant hoti, tumhara saathi sapno ki tarah tumhe humesha tumhe tumhare sath hi dikhta.<br />
+          Sapno se uthne ke baad ki pehli chai bhi sapno jaisi hoti, shayad sapno jaisi chai mein tumhare hone ki khushboo bhi rehti.</p>
+        </div>
+      </div>
+
+      {/* MEMORIES Section - Full-bleed images style */}
+      <div className="memoriesSection">
+        {/* Images will be added here - placeholder for now */}
+        <div className="memoriesImageContainer">
+          <img src="/images/memory-1.png" alt="5 STAR" className="memoriesImage" />
         </div>
       </div>
 
       <div className="coverSection">
-        <div className="sectionTitle">MEMORIES</div>
+        <div className="sectionTitle">5iveStarKavi</div>
         <div className="sectionContent">
-          <p>Every page holds a piece of our story, waiting to be explored.</p>
-        </div>
-      </div>
-
-      <div className="coverSection">
-        <div className="sectionTitle">MORE TO COME</div>
-        <div className="sectionContent">
-          <p>This space is always evolving, just like us.</p>
+          <p>Tumne bataya tha tumhara bazaar jaana hua tha, meri nazre bhi uss bazaar mein hokarr aayi, nazaro ko bazaar kaa raasta toh nhi maaloom tha parr tumhari baatein yaad thi ki tum iss bazaar se hi suit silwaati ho, nazare harr suit ki dukaan ke bahar tumhari khushbu dhoondh rahi thi...</p>
         </div>
       </div>
 
@@ -127,13 +133,32 @@ export default function HomeHub() {
       <div className="socialBanner">
         <div className="socialTitle">CONNECT</div>
         <div className="socialLinks">
-          <a href="#" className="socialLink" onClick={(e) => e.preventDefault()}>Instagram</a>
-          <a href="#" className="socialLink" onClick={(e) => e.preventDefault()}>Spotify</a>
-          <a href="#" className="socialLink" onClick={(e) => e.preventDefault()}>Twitter</a>
-          <a href="#" className="socialLink" onClick={(e) => e.preventDefault()}>TikTok</a>
+          <a href="https://instagram.com/aintgonnalack" target="_blank" rel="noopener noreferrer" className="socialLink">Instagram</a>
+          <a 
+            href="mailto:rishabhlikesmoon@gmail.com" 
+            className="socialLink"
+            onClick={(e) => {
+              window.location.href = 'mailto:rishabhlikesmoon@gmail.com';
+            }}
+          >
+            Mail
+          </a>
+          <a href="https://open.spotify.com/user/qoo0abie7r8x11qhza1slo59s?si=RswoIJYpS5i2E-DYehSp0A" target="_blank" rel="noopener noreferrer" className="socialLink">Spotify</a>
+          <a href="#" className="socialLink" onClick={(e) => { e.preventDefault(); setShowConnect4Life(true); }}>Connect4Life</a>
         </div>
-        <div className="socialFooter">♡ ForThePrettiestGirl ♡</div>
+        <div className="socialFooter">ForThePrettiestGirl</div>
+        <img src="/gifs/pisces-monochromian.gif" alt="Pisces" className="socialBannerGif" />
       </div>
+
+      {/* Connect4Life Modal */}
+      {showConnect4Life && (
+        <div className="connect4LifeModal" onClick={() => setShowConnect4Life(false)}>
+          <div className="connect4LifeModalContent" onClick={(e) => e.stopPropagation()}>
+            <button className="connect4LifeClose" onClick={() => setShowConnect4Life(false)}>×</button>
+            <img src="/images/connect4life.jpg" alt="Connect4Life" className="connect4LifeImage" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

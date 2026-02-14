@@ -66,3 +66,52 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #f472b6, #fbcfe8);
 }
+
+/* === TV PAGE (clean, no UI) === */
+.tvPage{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* background room image */
+.tvBg{
+  position: absolute;
+  inset: 0;
+}
+
+/* screen overlay — looks like real screen */
+.tvScreen{
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.45),
+    0 0 0 2px rgba(0,0,0,.35),
+    inset 0 0 18px rgba(255,255,255,.08);
+  filter: contrast(1.05) saturate(.95);
+}
+
+/* subtle scanlines */
+.tvScanlines{
+  position:absolute;
+  inset:0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.06) 0px,
+    rgba(255,255,255,.02) 2px,
+    rgba(0,0,0,0) 4px
+  );
+  opacity: .18;
+  pointer-events:none;
+}
+
+/* slight edge darkening */
+.tvVignette{
+  position:absolute;
+  inset:-25px;
+  background: radial-gradient(closest-side, rgba(0,0,0,0) 60%, rgba(0,0,0,.50) 100%);
+  pointer-events:none;
+}
