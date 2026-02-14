@@ -6,4 +6,5 @@ export default defineConfig({
   server: {
     port: 5173,
   },
+  base: '/', // Ensure base path is correct for deployment
 })
