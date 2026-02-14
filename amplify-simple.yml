@@ -3,12 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd web
-        - npm ci
+        - npm ci --prefix web
     build:
       commands:
-        - cd web
-        - npm run build
+        - npm run build --prefix web
   artifacts:
     baseDirectory: web/dist
     files:
